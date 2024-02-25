@@ -1,42 +1,46 @@
-## 🛡 Generate the User model:
+## generate Department model
 
-```bash 
-rails g model User name:string email:string
-```
-## 🛡 Generate the Profile model:
-
-```bash 
-rails g model Profile bio:text
+```bash
+rails g model department name
 ```
 
-## 🛡 Generate the join table model (conventionally named):
+## generate Manager model
 
-```bash 
-rails g model UserProfile user:belongs_to profile:belongs_to
+```bash
+rials g model manager name email contact department:references
 ```
 
-## 🛡 Open the app/models/user.rb file and add: 
+## generate ManagerHistory model
+
+```bash
+rails g model manager_history joining_date:date total_experience manager:references
+```
+
+## edit the models Manger and Department
 
 ```ruby
-class User < ApplicationRecord
-  has_one :user_profile # association with join table
-  has_one :profile, through: :user_profile # association through join table
+# don't modify this model  here managerhostory has manager_id
+
+class ManagerHistory < ApplicationRecord
+  belongs_to :manager
 end
+
+# modify this here manager table has department_id
+class Manager < ApplicationRecord
+  belongs_to :department
+  has_one :manager_history
+end
+
+# modify this 
+class Department < ApplicationRecord
+  has_one :manager
+  has_one :manager_history, through: :manager
+end
+
 ```
 
-## 🛡 Open the app/models/profile.rb file and add:
+## run 
 
-```ruby
-class Profile < ApplicationRecord
-  belongs_to :user # association with join table
-end
-```
-
-## 🛡  Open the app/models/user_profile.rb file and add (optional, but recommended for clarity):
-
-```ruby
-class UserProfile < ApplicationRecord
-  belongs_to :user
-  belongs_to :profile
-end
+```bash
+rails db:migrate
 ```
