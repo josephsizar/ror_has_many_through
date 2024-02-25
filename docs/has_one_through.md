@@ -1,18 +1,21 @@
 ## 🛡 generate Department model
 
-```bash 💻
+```bash
+💻
 rails g model department name
 ```
 
 ## 🛡 generate Manager model
 
-```bash 💻
+```bash
+💻
 rials g model manager name email contact department:references
 ```
 
 ## 🛡 generate ManagerHistory model
 
-```bash 💻
+```bash
+💻
 rails g model manager_history joining_date:date total_experience manager:references
 ```
 
