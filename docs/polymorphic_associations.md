@@ -57,7 +57,7 @@ end
 ```bash
 rails db:migrate
 ```
-## <font style="color:green"> poymorphic association </font>
+## <font style="color=green"> poymorphic association </font>
 
 ## instead of creating comment above create it like this
 
